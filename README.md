@@ -1,6 +1,6 @@
 # Spotify API Demo
 
-This projects just for `my interview jobs needs`
+This projects is just for **`my interview jobs needs.`**
 
 ## Features
 

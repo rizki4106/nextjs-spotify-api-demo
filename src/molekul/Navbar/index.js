@@ -31,7 +31,12 @@ export default function Navbar({ page }) {
       });
 
       const res = await req.json();
-      setUser(res);
+
+      if (req.status === 200) {
+        setUser(res);
+      } else {
+        window.location.href = "/login";
+      }
     } else {
       window.location.href = "/login";
     }
