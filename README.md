@@ -2,6 +2,10 @@
 
 This projects is just for **`my interview jobs needs.`**
 
+## Live Demo
+
+[https://nextjs-spotify-api.vercel.app/](https://nextjs-spotify-api.vercel.app/)
+
 ## Features
 
 1. Show all of your public playlist
