@@ -1,0 +1,17 @@
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 100px 0px 100px 0px;
+}
+.wrapper {
+  text-align: center;
+}
+.wrapper img {
+  margin-bottom: 20px;
+}
+
+.wrapper h4 {
+  font-weight: 700;
+}

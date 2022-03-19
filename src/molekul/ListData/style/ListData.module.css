@@ -1,0 +1,45 @@
+/* list playlist */
+.listPlaylist {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 55px;
+  border-bottom: 1px solid transparent;
+  transition: 0.2s;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+}
+.box_data {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.listPlaylist:hover {
+  border-bottom: 1px solid #dfd3d3;
+}
+.number {
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+  border: 2px solid #dfd3d3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 12px;
+  color: #dfd3d3;
+}
+.playListName {
+  flex: 1;
+  padding: 0px 30px 0px 30px;
+  font-weight: 500;
+  transition: 0.2s;
+}
+.data_img {
+  width: 45px;
+  height: 45px;
+  margin-left: 30px;
+  border-radius: 2px;
+}

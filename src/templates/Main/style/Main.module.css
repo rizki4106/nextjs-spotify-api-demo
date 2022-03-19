@@ -1,0 +1,25 @@
+.wrapper {
+  width: 100%;
+  height: auto;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.playlist {
+  flex: 1;
+  padding-top: 50px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.playlistWrapper {
+  width: 50%;
+}
+
+@media screen and (max-width: 780px) {
+  .playlistWrapper {
+    width: 100%;
+  }
+}
