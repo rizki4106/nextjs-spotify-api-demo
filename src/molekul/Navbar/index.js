@@ -67,7 +67,6 @@ export default function Navbar({ page }) {
         <ChevronDown color="#363636" size={14} />
 
         <div className={style.user_action}>
-          <span>Profile</span>
           <span onClick={() => handleLogOut()}>Log Out</span>
         </div>
       </div>
