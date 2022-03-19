@@ -12,11 +12,14 @@ import { useState, useEffect } from "react";
 import stateManagement from "../../config/stateManagement";
 import Cookies from "js-cookie";
 import Null from "../../molekul/Null";
+import jsCookie from "js-cookie";
 
 export default function Song({ Success, Data, PlaylistName, PlayListId }) {
   const [popUpPosition, setPosition] = useState(-200);
   const [tracks, setTracks] = useState([]);
   const [trackName, setTrackName] = useState("");
+  const [deleting, setDeleting] = useState(false);
+  const [trackURI, setTrackURI] = useState("");
 
   useEffect(() => {
     ProcessData();
@@ -46,10 +49,10 @@ export default function Song({ Success, Data, PlaylistName, PlayListId }) {
   function listenEvent() {
     stateManagement.subscribe(() => {
       const state = stateManagement.getState();
-      console.log(state);
       if (state.type === "delete_track") {
         setPosition(0);
         setTrackName(state.trackName);
+        setTrackURI(state.uri);
       }
     });
   }
@@ -74,8 +77,33 @@ export default function Song({ Success, Data, PlaylistName, PlayListId }) {
       });
   }
 
-  function deleteTracks(trackid, playlistid) {
-    fetch(`https://api.spotify.com/v1/playlists/${playlistid}/tracks`);
+  function deleteTracks(trackUri, playlistid) {
+    setDeleting(true);
+
+    const body = JSON.stringify({
+      tracks: [{ uri: trackUri }],
+    });
+
+    //
+    fetch(`https://api.spotify.com/v1/playlists/${playlistid}/tracks`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${jsCookie.get("access_token")}`,
+        "Content-Type": "application/json",
+      },
+      body: body,
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        setDeleting(false);
+        setPosition(-200);
+        getCurrentTrack();
+      })
+      .catch((err) => {
+        console.warn(err);
+      });
   }
 
   return (
@@ -118,7 +146,12 @@ export default function Song({ Success, Data, PlaylistName, PlayListId }) {
           <small>
             apakah anda yakin ingin menghapus <b>{trackName}</b>?
           </small>
-          <span className={style.delete}>Hapus</span>
+          <span
+            onClick={() => deleteTracks(trackURI, PlayListId)}
+            className={style.delete}
+          >
+            {deleting ? "Loading..." : "Hapus"}
+          </span>
           <span onClick={() => setPosition(-200)} className={style.cancel}>
             Batal
           </span>
